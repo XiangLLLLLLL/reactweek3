@@ -296,7 +296,7 @@ function App() {
                   <label htmlFor="username">Email address</label>
                 </div>
                 <div className="form-floating">
-                  <input type="password" className="form-control" id="password" name="password" placeholder="Password" value={account.passward} onChange={handleInputChange} required />
+                  <input type="password" className="form-control" id="password" name="password" placeholder="Password" value={account.password} onChange={handleInputChange} required />
                   <label htmlFor="password">Password</label>
                 </div>
                 <button className="btn btn-lg btn-primary w-100 mt-3">登入</button>
