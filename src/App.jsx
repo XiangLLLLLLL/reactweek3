@@ -39,7 +39,7 @@ function App() {
     if (token) checkLogin();
   }, []);
 
-  return <>{isAuth ? <ProductsPage getData={getData} products={products} pageInfo={pageInfo} /> : <LoginPage />}</>;
+  return <>{isAuth ? <ProductsPage getData={getData} products={products} pageInfo={pageInfo} /> : <LoginPage setIsAuth={setIsAuth} />}</>;
 }
 
 export default App;

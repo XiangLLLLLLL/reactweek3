@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_BASE_URL;
 
-function LoginPage() {
+function LoginPage({ setIsAuth }) {
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -17,7 +18,8 @@ function LoginPage() {
       axios.defaults.headers.common["Authorization"] = token;
       getData();
     } catch (error) {
-      alert(error.response.data.message);
+      // alert(error.response.data.message);
+      console.log(error);
     }
   };
   // 取input的值到account
