@@ -20,7 +20,6 @@ function App() {
       alert(error.response.data.message);
     }
   };
-
   // 登入驗證功能
   const checkLogin = async () => {
     try {
@@ -32,14 +31,13 @@ function App() {
       alert(error.response.data.message);
     }
   };
-
   useEffect(() => {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)loginToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     axios.defaults.headers.common["Authorization"] = token;
     if (token) checkLogin();
   }, []);
 
-  return <>{isAuth ? <ProductsPage getData={getData} products={products} pageInfo={pageInfo} /> : <LoginPage setIsAuth={setIsAuth} />}</>;
+  return <>{isAuth ? <ProductsPage getData={getData} checkLogin={checkLogin} products={products} pageInfo={pageInfo} /> : <LoginPage setIsAuth={setIsAuth} />}</>;
 }
 
 export default App;

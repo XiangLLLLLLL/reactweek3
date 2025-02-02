@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Pagination from "../components/Pagination";
 import UpdateModal from "../components/UpdateModal";
 import DelModal from "../components/DelModal";
@@ -16,11 +17,18 @@ const defaultModalState = {
   imagesUrl: [""],
 };
 
-function Products({ getData, products, pageInfo }) {
+function Products({ getData, products, pageInfo, checkLogin }) {
   const [modalMode, setModalMode] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
   const [tempProduct, setTempProduct] = useState(defaultModalState);
+
+  useEffect(() => {
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)loginToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    axios.defaults.headers.common["Authorization"] = token;
+    if (token) checkLogin();
+  }, []);
+
   // 產品頁面開啟Modal
   const handleOpenProductModal = (mode, tempProduct) => {
     setModalMode(mode);
